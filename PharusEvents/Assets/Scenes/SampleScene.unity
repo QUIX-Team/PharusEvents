@@ -208,12 +208,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480205084}
-        m_TargetAssemblyTypeName: MenueManager, Assembly-CSharp
-        m_MethodName: OpenMenue
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1904471784}
-          m_ObjectArgumentAssemblyTypeName: Menue, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1099,7 +1099,7 @@ GameObject:
   - component: {fileID: 533736075}
   - component: {fileID: 533736076}
   m_Layer: 5
-  m_Name: LoadingMenue
+  m_Name: LoadingMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: loading
+  MenuName: loading
   open: 1
 --- !u!1 &705507993
 GameObject:
@@ -1348,7 +1348,7 @@ GameObject:
   - component: {fileID: 723237299}
   - component: {fileID: 723237300}
   m_Layer: 5
-  m_Name: RoomMenue
+  m_Name: RoomMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,7 +1389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: room
+  MenuName: room
   open: 0
 --- !u!1 &739819066
 GameObject:
@@ -1476,12 +1476,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480205084}
-        m_TargetAssemblyTypeName: MenueManager, Assembly-CSharp
-        m_MethodName: OpenMenue
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1904471784}
-          m_ObjectArgumentAssemblyTypeName: Menue, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2045,7 +2045,7 @@ GameObject:
   - component: {fileID: 970101983}
   - component: {fileID: 970101984}
   m_Layer: 5
-  m_Name: ErrorMenue
+  m_Name: ErrorMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2085,7 +2085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: error
+  MenuName: error
   open: 0
 --- !u!1 &998878801
 GameObject:
@@ -2307,12 +2307,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480205084}
-        m_TargetAssemblyTypeName: MenueManager, Assembly-CSharp
-        m_MethodName: OpenMenue
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1541987526}
-          m_ObjectArgumentAssemblyTypeName: Menue, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2441,12 +2441,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1480205084}
-        m_TargetAssemblyTypeName: MenueManager, Assembly-CSharp
-        m_MethodName: OpenMenue
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: OpenMenu
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1974311388}
-          m_ObjectArgumentAssemblyTypeName: Menue, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Menu, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2764,7 +2764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e979cc672796ae14b99c207cdc3d8891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menues:
+  menus:
   - {fileID: 533736076}
   - {fileID: 1904471784}
   - {fileID: 1541987526}
@@ -2782,7 +2782,7 @@ GameObject:
   - component: {fileID: 1541987525}
   - component: {fileID: 1541987526}
   m_Layer: 5
-  m_Name: CreateRoomMenue
+  m_Name: CreateRoomMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: create room
+  MenuName: create room
   open: 0
 --- !u!1 &1549449624
 GameObject:
@@ -3538,7 +3538,7 @@ GameObject:
   - component: {fileID: 1904471783}
   - component: {fileID: 1904471784}
   m_Layer: 5
-  m_Name: TitleMenue
+  m_Name: TitleMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: title
+  MenuName: title
   open: 0
 --- !u!1 &1960717280
 GameObject:
@@ -3859,7 +3859,7 @@ GameObject:
   - component: {fileID: 1974311387}
   - component: {fileID: 1974311388}
   m_Layer: 5
-  m_Name: FindRoomMenue
+  m_Name: FindRoomMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9103fee7f32b9f4b9b883b3ab383327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenueName: find room
+  MenuName: find room
   open: 0
 --- !u!1 &2108590445
 GameObject:

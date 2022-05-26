@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Menue : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-    public string MenueName;
+    public string MenuName;
     public bool open;
     public void Open()
     {

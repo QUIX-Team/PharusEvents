@@ -37,7 +37,7 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        MenueManager.Instance.OpenMenue("title");
+        MenuManager.Instance.OpenMenu("title");
         Debug.Log("Joined lobby");
         PhotonNetwork.NickName = "player" + Random.Range(1,1000).ToString("0000");
     }
@@ -49,13 +49,13 @@ public class Launcher : MonoBehaviourPunCallbacks
             return;
         }
         PhotonNetwork.CreateRoom(roomName_Input.text);
-        MenueManager.Instance.OpenMenue("loading");
+        MenuManager.Instance.OpenMenu("loading");
     }
 
      public override void OnJoinedRoom()
     {
         roomName_txt.text = PhotonNetwork.CurrentRoom.Name;
-        MenueManager.Instance.OpenMenue("room");
+        MenuManager.Instance.OpenMenu("room");
 
         Player[] players = PhotonNetwork.PlayerList;
         for(int i =0 ;i < players.Length ;i++)
@@ -67,24 +67,24 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         error_txt.text = "Room creation failed!\n" + message;
-        MenueManager.Instance.OpenMenue("error");
+        MenuManager.Instance.OpenMenu("error");
     }
 
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();
-        MenueManager.Instance.OpenMenue("loading");
+        MenuManager.Instance.OpenMenu("loading");
     }
 
     public void JoinRoom(RoomInfo info)
     {
         PhotonNetwork.JoinRoom(info.Name);
-        MenueManager.Instance.OpenMenue("loading");
+        MenuManager.Instance.OpenMenu("loading");
     }
 
     public override void OnLeftRoom()
     {
-        MenueManager.Instance.OpenMenue("title");
+        MenuManager.Instance.OpenMenu("title");
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
