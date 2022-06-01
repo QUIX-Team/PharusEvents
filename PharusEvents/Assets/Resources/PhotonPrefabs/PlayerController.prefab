@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraHolder: {fileID: 4685705981317803101}
-  mouseSensitivity: 3
+  mouseSensitivity: 2
   sprintSpeed: 6
   walkSpeed: 3
   jumpForce: 300

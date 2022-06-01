@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     PhotonView pv;
     [SerializeField] GameObject cameraHolder;
-    Joystick joystick;
+    
     
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
         inputActions = new PlayerInputActions();
-        joystick = FindObjectOfType<FixedJoystick>();
+       
         
     }
 
@@ -55,9 +55,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        //Look();
+        Look();
         Move();
-        //Jump();
+        Jump();
     }
 
     void FixedUpdate()
@@ -72,9 +72,10 @@ public class PlayerController : MonoBehaviour
         
     void Look()
     {
-        transform.Rotate(Vector3.up * Input.GetAxisRaw("Mouse X") * mouseSensitivity);
+        Vector2 inputs = inputActions.Player.Looking.ReadValue<Vector2>();
+        transform.Rotate(Vector3.up * inputs.x * mouseSensitivity);
 
-        verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+        verticalLookRotation += inputs.y * mouseSensitivity;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
 
         cameraHolder.transform.localEulerAngles = Vector3.left * verticalLookRotation;
@@ -90,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
     void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(inputActions.Player.Jumping.triggered && isGrounded)
         {
             rb.AddForce(transform.up * jumpForce);
         }
