@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 819a9fe470ba97a42a81845b13b2492b
+  - enabled: 1
+    path: Assets/Packages/Joystick Pack/Examples/Easter0.unity
+    guid: 414bddd31c5ea4f4c9f5d1452e5bbb41
   m_configObjects: {}

@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
+
+    PlayerInputActions inputActions;
     Rigidbody rb;
-
     PhotonView pv;
-
     [SerializeField] GameObject cameraHolder;
+    Joystick joystick;
+    
 
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
     float verticalLookRotation;
@@ -21,6 +24,19 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
+        inputActions = new PlayerInputActions();
+        joystick = FindObjectOfType<FixedJoystick>();
+        
+    }
+
+    void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    void OnDisable()
+    {
+        inputActions.Disable();
     }
 
     void Start()
@@ -39,9 +55,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Look();
+        //Look();
         Move();
-        Jump();
+        //Jump();
     }
 
     void FixedUpdate()
@@ -66,10 +82,10 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+        Vector2 inputs = inputActions.Player.Movements.ReadValue<Vector2>();
+        Vector3 moveDir = new Vector3(inputs.x, 0, inputs.y).normalized;
 
-        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed),
-            ref smoothMoveVelocity, smoothTime);
+        moveAmount = Vector3.SmoothDamp(moveAmount, moveDir *  sprintSpeed, ref smoothMoveVelocity, smoothTime);
     }
 
     void Jump()
