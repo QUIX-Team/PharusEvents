@@ -125,4 +125,14 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         Instantiate(playerListItemPrefab, playerListContent).GetComponent<PlayerListItem>().SetUp(newPlayer);
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
+
+    public void Credits()
+    {
+        PhotonNetwork.LoadLevel(2);
+    }
 }
