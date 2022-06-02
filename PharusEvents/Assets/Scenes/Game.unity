@@ -532,8 +532,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logLevel: 2
   ignoreGlobalLogLevel: 0
-  voiceDetection: 0
-  voiceDetectionThreshold: 0.01
+  voiceDetection: 1
+  voiceDetectionThreshold: 0.05
   voiceDetectionDelayMs: 500
   unityMicrophoneDevice: 
   photonMicrophoneDeviceId: 0
@@ -546,7 +546,7 @@ MonoBehaviour:
   frameDuration: 20000
   bitrate: 30000
   sourceType: 0
-  microphoneType: 0
+  microphoneType: 1
   audioClip: {fileID: 0}
   loopAudioClip: 1
   reactOnSystemChanges: 0
@@ -558,9 +558,9 @@ MonoBehaviour:
   useCustomAudioSessionParameters: 0
   audioSessionPresetIndex: 0
   nativeAndroidMicrophoneSettings:
-    AcousticEchoCancellation: 0
-    AutomaticGainControl: 0
-    NoiseSuppression: 0
+    AcousticEchoCancellation: 1
+    AutomaticGainControl: 1
+    NoiseSuppression: 1
   recordOnlyWhenEnabled: 0
   skipDeviceChangeChecks: 0
   stopRecordingWhenPaused: 0
