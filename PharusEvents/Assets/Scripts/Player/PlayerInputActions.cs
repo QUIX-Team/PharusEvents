@@ -200,6 +200,94 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""7a195296-908a-4811-9452-444a79de8a88"",
+            ""actions"": [
+                {
+                    ""name"": ""ShowVideolink"",
+                    ""type"": ""Button"",
+                    ""id"": ""7950f08f-5b8b-469e-a814-67e750011d73"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""HideVideoLink"",
+                    ""type"": ""Button"",
+                    ""id"": ""6acf36c1-f5d0-4da1-8d54-b7ecc838b3f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VideoPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a30cd18-0e89-4d9f-a5ec-365476c0dc20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VideoPlay"",
+                    ""type"": ""Button"",
+                    ""id"": ""fcbaf59d-0b9f-4153-a437-e669dd2f7e1e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""92ec7c13-7dd8-4253-a83e-6dfb9b654b4a"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowVideolink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80d77d50-75cd-4eef-8a1b-565274fde464"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideVideoLink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a0dd5c5-0a70-42f1-8e31-2ee0cb637fe1"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VideoPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86003880-fd75-4e01-9906-5d83c6217968"",
+                    ""path"": ""<Keyboard>/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VideoPlay"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -209,6 +297,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
         m_Player_Movements = m_Player.FindAction("Movements", throwIfNotFound: true);
         m_Player_Looking = m_Player.FindAction("Looking", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_ShowVideolink = m_UI.FindAction("ShowVideolink", throwIfNotFound: true);
+        m_UI_HideVideoLink = m_UI.FindAction("HideVideoLink", throwIfNotFound: true);
+        m_UI_VideoPause = m_UI.FindAction("VideoPause", throwIfNotFound: true);
+        m_UI_VideoPlay = m_UI.FindAction("VideoPlay", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -313,10 +407,74 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_ShowVideolink;
+    private readonly InputAction m_UI_HideVideoLink;
+    private readonly InputAction m_UI_VideoPause;
+    private readonly InputAction m_UI_VideoPlay;
+    public struct UIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ShowVideolink => m_Wrapper.m_UI_ShowVideolink;
+        public InputAction @HideVideoLink => m_Wrapper.m_UI_HideVideoLink;
+        public InputAction @VideoPause => m_Wrapper.m_UI_VideoPause;
+        public InputAction @VideoPlay => m_Wrapper.m_UI_VideoPlay;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @ShowVideolink.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShowVideolink;
+                @ShowVideolink.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShowVideolink;
+                @ShowVideolink.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShowVideolink;
+                @HideVideoLink.started -= m_Wrapper.m_UIActionsCallbackInterface.OnHideVideoLink;
+                @HideVideoLink.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnHideVideoLink;
+                @HideVideoLink.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnHideVideoLink;
+                @VideoPause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPause;
+                @VideoPause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPause;
+                @VideoPause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPause;
+                @VideoPlay.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
+                @VideoPlay.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
+                @VideoPlay.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ShowVideolink.started += instance.OnShowVideolink;
+                @ShowVideolink.performed += instance.OnShowVideolink;
+                @ShowVideolink.canceled += instance.OnShowVideolink;
+                @HideVideoLink.started += instance.OnHideVideoLink;
+                @HideVideoLink.performed += instance.OnHideVideoLink;
+                @HideVideoLink.canceled += instance.OnHideVideoLink;
+                @VideoPause.started += instance.OnVideoPause;
+                @VideoPause.performed += instance.OnVideoPause;
+                @VideoPause.canceled += instance.OnVideoPause;
+                @VideoPlay.started += instance.OnVideoPlay;
+                @VideoPlay.performed += instance.OnVideoPlay;
+                @VideoPlay.canceled += instance.OnVideoPlay;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IPlayerActions
     {
         void OnJumping(InputAction.CallbackContext context);
         void OnMovements(InputAction.CallbackContext context);
         void OnLooking(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnShowVideolink(InputAction.CallbackContext context);
+        void OnHideVideoLink(InputAction.CallbackContext context);
+        void OnVideoPause(InputAction.CallbackContext context);
+        void OnVideoPlay(InputAction.CallbackContext context);
     }
 }
