@@ -18,14 +18,19 @@ public class VideoLoader : MonoBehaviour
     void Start()
     {
         videoPlayer.url = videoUrl;
-        videoPlayer.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
         videoPlayer.EnableAudioTrack (0, true);
         videoPlayer.Prepare();
+        videoPlayer.Pause();
     }
     public void ReSetVideo()
     {
+        videoPlayer.Stop();
         videoPlayer.url = videoUrl;
+        videoPlayer.audioOutputMode = VideoAudioOutputMode.Direct;
+        videoPlayer.EnableAudioTrack (0, true);
         videoPlayer.Prepare();
+        
     }
     public void Pause()
     {
@@ -37,4 +42,6 @@ public class VideoLoader : MonoBehaviour
         Debug.Log("Video play");
         videoPlayer.Play();
     }
+
+    
 }
