@@ -12,21 +12,20 @@ public class PlayerController : MonoBehaviour
     PhotonView pv;
     [SerializeField] GameObject cameraHolder;
     
-    
-
+    Animator animator;
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
     float verticalLookRotation;
     bool isGrounded;
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
-
+    //[SerializeField] PlayerBodyRotation bodyRotation;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
         inputActions = new PlayerInputActions();
        
-        
+        animator = GetComponentInChildren<Animator>();
     }
 
     void OnEnable()
@@ -75,6 +74,8 @@ public class PlayerController : MonoBehaviour
         Vector2 inputs = inputActions.Player.Looking.ReadValue<Vector2>();
         transform.Rotate(Vector3.up * inputs.x * mouseSensitivity);
 
+        //bodyRotation.RotateBody(inputs.x * mouseSensitivity);
+
         verticalLookRotation += inputs.y * mouseSensitivity;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
 
@@ -87,6 +88,9 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = new Vector3(inputs.x, 0, inputs.y).normalized;
 
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir *  sprintSpeed, ref smoothMoveVelocity, smoothTime);
+
+        float animMove = Mathf.Abs(inputs.x) + Mathf.Abs(inputs.y);
+        animator.SetFloat("Speed",animMove);
     }
 
     void Jump()
@@ -101,5 +105,6 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = _grounded;
     }
+
     
 }
