@@ -2,26 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     PlayerInputActions inputActions;
     [SerializeField] Menu videolink;
     [SerializeField] TMP_InputField input;
+    
+    
+
 
      void Awake()
     {
         inputActions = new PlayerInputActions();
+
     }
      void OnEnable()
     {
         inputActions.Enable();
     }
-    void Start()
-    {
-        
-    }
-
+   
+  
     void Update()
     {
         if(inputActions.UI.ShowVideolink.triggered)

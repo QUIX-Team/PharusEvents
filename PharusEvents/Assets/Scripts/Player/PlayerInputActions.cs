@@ -240,6 +240,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMute"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f9541de-3113-4d9d-89c6-e500f2086b2a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToggleMuteOthers"",
+                    ""type"": ""Button"",
+                    ""id"": ""a08219c2-a8e9-4808-8108-352ce6218950"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -286,6 +304,50 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""VideoPlay"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87b301ee-f6ad-4008-b01e-0ecec411ab75"",
+                    ""path"": ""<Touchscreen>/touch0/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2b093ea-6d02-41ca-836f-275317e2a573"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMute"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc540abb-0e17-444c-bfdb-3efc044751c1"",
+                    ""path"": ""<Touchscreen>/touch1/tap"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMuteOthers"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5efc0141-e693-46c5-a536-c0b3dd1b44cb"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleMuteOthers"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -303,6 +365,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_UI_HideVideoLink = m_UI.FindAction("HideVideoLink", throwIfNotFound: true);
         m_UI_VideoPause = m_UI.FindAction("VideoPause", throwIfNotFound: true);
         m_UI_VideoPlay = m_UI.FindAction("VideoPlay", throwIfNotFound: true);
+        m_UI_ToggleMute = m_UI.FindAction("ToggleMute", throwIfNotFound: true);
+        m_UI_ToggleMuteOthers = m_UI.FindAction("ToggleMuteOthers", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -415,6 +479,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_HideVideoLink;
     private readonly InputAction m_UI_VideoPause;
     private readonly InputAction m_UI_VideoPlay;
+    private readonly InputAction m_UI_ToggleMute;
+    private readonly InputAction m_UI_ToggleMuteOthers;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -423,6 +489,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @HideVideoLink => m_Wrapper.m_UI_HideVideoLink;
         public InputAction @VideoPause => m_Wrapper.m_UI_VideoPause;
         public InputAction @VideoPlay => m_Wrapper.m_UI_VideoPlay;
+        public InputAction @ToggleMute => m_Wrapper.m_UI_ToggleMute;
+        public InputAction @ToggleMuteOthers => m_Wrapper.m_UI_ToggleMuteOthers;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -444,6 +512,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @VideoPlay.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
                 @VideoPlay.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
                 @VideoPlay.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVideoPlay;
+                @ToggleMute.started -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMute;
+                @ToggleMute.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMute;
+                @ToggleMute.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMute;
+                @ToggleMuteOthers.started -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMuteOthers;
+                @ToggleMuteOthers.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMuteOthers;
+                @ToggleMuteOthers.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnToggleMuteOthers;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -460,6 +534,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @VideoPlay.started += instance.OnVideoPlay;
                 @VideoPlay.performed += instance.OnVideoPlay;
                 @VideoPlay.canceled += instance.OnVideoPlay;
+                @ToggleMute.started += instance.OnToggleMute;
+                @ToggleMute.performed += instance.OnToggleMute;
+                @ToggleMute.canceled += instance.OnToggleMute;
+                @ToggleMuteOthers.started += instance.OnToggleMuteOthers;
+                @ToggleMuteOthers.performed += instance.OnToggleMuteOthers;
+                @ToggleMuteOthers.canceled += instance.OnToggleMuteOthers;
             }
         }
     }
@@ -476,5 +556,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnHideVideoLink(InputAction.CallbackContext context);
         void OnVideoPause(InputAction.CallbackContext context);
         void OnVideoPlay(InputAction.CallbackContext context);
+        void OnToggleMute(InputAction.CallbackContext context);
+        void OnToggleMuteOthers(InputAction.CallbackContext context);
     }
 }

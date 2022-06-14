@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Voice.Unity;
 using UnityEngine;
 
 
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
+
+    AudioSource audioSource;
+    Recorder recorder;
     //[SerializeField] PlayerBodyRotation bodyRotation;
     void Awake()
     {
@@ -26,6 +30,9 @@ public class PlayerController : MonoBehaviour
         inputActions = new PlayerInputActions();
        
         animator = GetComponentInChildren<Animator>();
+
+        audioSource = GetComponentInChildren<AudioSource>();
+        recorder = FindObjectOfType<Recorder>();
     }
 
     void OnEnable()
@@ -57,6 +64,8 @@ public class PlayerController : MonoBehaviour
         Look();
         Move();
         Jump();
+        ToggleMute();
+        ToggleMuteOthers();
     }
 
     void FixedUpdate()
@@ -104,6 +113,46 @@ public class PlayerController : MonoBehaviour
     public void SetGroundedState(bool _grounded)
     {
         isGrounded = _grounded;
+    }
+
+    public void ToggleMute()
+    {
+        if(inputActions.UI.ToggleMute.triggered)
+        {
+            Debug.Log("muted");
+           if(recorder.TransmitEnabled)
+           {
+                recorder.TransmitEnabled = false;
+                Debug.Log("Transmit disabled");
+                return;
+           }
+           if(!recorder.TransmitEnabled)
+           {
+                recorder.TransmitEnabled = true;
+                Debug.Log("Transmit enabled");
+                return;
+           }
+            
+        }
+    }
+    public void ToggleMuteOthers()
+    {
+        if(inputActions.UI.ToggleMuteOthers.triggered)
+        {
+            Debug.Log("others muted");
+           if(audioSource.enabled)
+           {
+                audioSource.enabled = false;
+                Debug.Log("audioSource disabled");
+           }
+           if(!audioSource.enabled)
+           {
+                audioSource.enabled = true;
+                Debug.Log("audioSource enabled");
+
+           }
+            
+        }
     }
 
     
