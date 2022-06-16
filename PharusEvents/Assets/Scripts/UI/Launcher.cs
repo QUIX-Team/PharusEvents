@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
+using UnityEngine.UI;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -18,6 +19,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField] Transform playerListContent;
     [SerializeField] GameObject playerListItemPrefab;
     [SerializeField] GameObject startEvent_btn;
+    [SerializeField] Button CreateButton;
     void Awake() 
     {
         Instance=this;
@@ -40,6 +42,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         MenuManager.Instance.OpenMenu("title");
+        AndroidGUI();
         Debug.Log("Joined lobby");
         //PhotonNetwork.NickName = "player" + Random.Range(1,1000).ToString("0000");
     }
@@ -103,6 +106,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         MenuManager.Instance.OpenMenu("title");
+        AndroidGUI();
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -137,5 +141,20 @@ public class Launcher : MonoBehaviourPunCallbacks
     public void Credits()
     {
         PhotonNetwork.LoadLevel(2);
+    }
+
+    public void AndroidGUI()
+    {
+        #if UNITY_ANDROID
+
+            CreateButton.gameObject.SetActive(false);
+
+        #endif
+        #if UNITY_EDITOR
+
+            CreateButton.gameObject.SetActive(true);
+            
+        #endif
+        
     }
 }

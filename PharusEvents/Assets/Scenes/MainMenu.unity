@@ -4220,6 +4220,7 @@ MonoBehaviour:
   playerListContent: {fileID: 722137921}
   playerListItemPrefab: {fileID: 3927537588722590164, guid: 7f159999238f80240be6aa6f5cee8147, type: 3}
   startEvent_btn: {fileID: 866272897}
+  CreateButton: {fileID: 1129765921}
 --- !u!114 &1480205080
 MonoBehaviour:
   m_ObjectHideFlags: 0
