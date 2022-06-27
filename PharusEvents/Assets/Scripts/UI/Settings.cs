@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    private static string JOSH = "josh";
-    private static string SUZIE = "suzie";
+    public static readonly string JOSH = "josh";
+    public static readonly string SUZIE = "suzie";
 
     void Start()
     {

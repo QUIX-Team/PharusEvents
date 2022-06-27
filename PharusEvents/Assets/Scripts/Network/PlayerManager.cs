@@ -25,6 +25,15 @@ public class PlayerManager : MonoBehaviour
     void CreateController()
     {
         Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint();
-        PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerController"),spawnPoint.position,spawnPoint.rotation);
+
+        if(PlayerPrefs.GetString("avatar") == Settings.JOSH || PlayerPrefs.GetString("avatar") is null )
+        {
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","PlayerController"),spawnPoint.position,spawnPoint.rotation);
+        }
+
+        else if (PlayerPrefs.GetString("avatar") == Settings.SUZIE)
+        {
+            PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs","SuziePlayerController"),spawnPoint.position,spawnPoint.rotation);
+        }
     }
 }
