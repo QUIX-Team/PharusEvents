@@ -8,13 +8,6 @@ thos events will run simultaneously and other users can join to them.
 
 
 
-
-
-## 🔗 Links
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kelaadwy/)
-
-
-
 ## About The Project
 
 This project uses Photon pun2 and photon voice 2.
